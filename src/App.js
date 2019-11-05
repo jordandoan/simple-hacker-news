@@ -4,25 +4,17 @@ import { useQuery } from '@apollo/react-hooks';
 
 import Onboarding from './components/Onboarding';
 import Add from './components/Add';
+import LinkCard from './components/LinkCard';
+import { GET_LINKS } from './components/Queries';
 
 import './App.css';
 
-const GET_LINKS = gql`
-query GetLinks {
-  feed {
-    links {
-      description
-      url
-    }
-  }
-}
-`
-
 function App() {
-  const { loading, error, data } = useQuery(GET_LINKS);
+  const { loading, error, data } = useQuery(GET_LINKS, { pollInterval: 500 });
   const [token, setToken] = useState(localStorage.getItem('token'))
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
+
   const logout = () => {
     setToken('');
     localStorage.clear();
@@ -37,7 +29,7 @@ function App() {
         <div>
           <Add/> 
           <div className="links">
-            {data.feed.links.map(link => <div className="link-container"><p>{link.url}</p><p>{link.description}</p></div>)}
+            {data.feed.links.map((link, index) => <LinkCard link={link} index={index}/>)}
           </div>
         </div>
       }

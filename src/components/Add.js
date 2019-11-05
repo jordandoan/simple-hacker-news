@@ -2,16 +2,7 @@ import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 
-const GET_LINKS = gql`
- query GetLinks {
-   feed {
-     links {
-       description
-       url
-     }
-   }
- }
-`
+import { GET_LINKS } from './Queries';
 
 const POST = gql`
   mutation Post($url: String!, $description: String!) {
