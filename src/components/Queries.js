@@ -7,9 +7,15 @@ query GetLinks {
       id
       description
       url
+      count
       postedBy {
         id
         name
+      }
+      votes {
+        user {
+          id
+        }
       }
     }
   }

@@ -16,3 +16,19 @@
 .links:nth-child(2n) {
   flex-direction: row-reverse;
 }
+
+.liked {
+  color:blue;
+}
+
+.hidden {
+  display: none;
+}
+
+.vote-button {
+  background-color: lightgray;
+  width: 30%;
+  margin: auto;
+  border: 1px solid black;
+  border-radius: 15px;
+}

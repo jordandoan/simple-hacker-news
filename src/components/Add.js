@@ -7,8 +7,19 @@ import { GET_LINKS } from './Queries';
 const POST = gql`
   mutation Post($url: String!, $description: String!) {
     post(url: $url, description: $description) {
+      id
       url
       description
+      count
+      postedBy {
+        id
+        name
+      }
+      votes {
+        user {
+          id
+        }
+      }
     }
   }
 `

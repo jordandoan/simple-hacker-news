@@ -12,7 +12,6 @@ function App() {
   const { client, loading, error, data } = useQuery(GET_LINKS, { pollInterval: 500 });
   const [token, setToken] = useState(localStorage.getItem('token'))
   const [getUser, {data: userData}] = useLazyQuery(GET_USER);
-
   useEffect(() => {
     if (token) {
       getUser();
