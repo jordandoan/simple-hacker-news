@@ -2,26 +2,15 @@ import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 
-import { GET_LINKS } from './Queries';
+import { GET_LINKS, LINK_FRAGMENT } from './Queries';
 
 const POST = gql`
   mutation Post($url: String!, $description: String!) {
     post(url: $url, description: $description) {
-      id
-      url
-      description
-      count
-      postedBy {
-        id
-        name
-      }
-      votes {
-        user {
-          id
-        }
-      }
+      ...linkInfo
     }
   }
+  ${LINK_FRAGMENT}
 `
 
 const Add = () => {

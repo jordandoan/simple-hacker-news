@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
-import { GET_LINKS } from './Queries';
+import { GET_LINKS, LINK_FRAGMENT } from './Queries';
 
 const DELETE = gql`
   mutation Delete($id: ID!) {
@@ -13,11 +13,10 @@ const DELETE = gql`
 const EDIT = gql`
   mutation Edit($id: ID!, $url: String!, $description: String!) {
     updateLink(id: $id, url: $url, description: $description) {
-      id
-      description
-      url
+      ...linkInfo
     }
   }
+  ${LINK_FRAGMENT}
 `
 const VOTE = gql`
   mutation vote($linkId: ID!) {
