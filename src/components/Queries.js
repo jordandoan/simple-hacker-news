@@ -7,7 +7,20 @@ query GetLinks {
       id
       description
       url
+      postedBy {
+        id
+        name
+      }
     }
+  }
+}
+`
+
+export const GET_USER = gql`
+query User {
+  me {
+    id
+    name
   }
 }
 `

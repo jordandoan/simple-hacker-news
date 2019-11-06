@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 
-import { GET_LINKS } from './Queries';
-
 const DELETE = gql`
   mutation Delete($id: ID!) {
     deleteLink(id: $id) {
@@ -19,10 +17,10 @@ const EDIT = gql`
   }
 `
 
-const LinkCard = ({ link, index }) => {
-  let [formActive, setForm] = useState(false);
+const LinkCard = ({ link, index, user }) => {
   let [deleteLink, deleteStatus] = useMutation(DELETE);
   let [editLink, editStatus] = useMutation(EDIT);
+  let [formActive, setForm] = useState(false);
   let [fields, setFields] = useState({url: link.url, description: link.description})
 
   const handleDelete = () => {
@@ -30,7 +28,6 @@ const LinkCard = ({ link, index }) => {
   }
 
   const handleChange = (e) => {
-    console.log(fields);
     setFields({...fields, [e.target.name]: e.target.value})
   }
 
@@ -43,10 +40,16 @@ const LinkCard = ({ link, index }) => {
   return (
     <div className="link-container">
       {!formActive && 
-      (<><p>{link.url}</p>
-      <p>{link.description}</p>
-      <button onClick={() => handleDelete()}>Delete</button>
-      <button onClick={() => setForm(true)}>Edit</button></>)
+      (<>
+        <p>{link.url}</p>
+          <p>{link.description}</p>
+          <p>Posted by: {link.postedBy.name}</p>
+          {link.postedBy.id == user.id  && 
+            <>
+              <button onClick={() => handleDelete()}>Delete</button>
+              <button onClick={() => setForm(true)}>Edit</button>
+            </>}
+      </>)
       }
       {formActive && 
         <form>

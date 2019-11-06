@@ -25,16 +25,16 @@ const Onboarding = (props) => {
 
   const handleChange = (e) => {
     setFields({...fields, [e.target.name]: e.target.value})
-    
   }
 
   const handleSignup = (e) => {
     e.preventDefault();
     signup({variables: fields})
       .then(results => {
-          loginStatus.error = null
-          localStorage.setItem('token', results.data.signup.token)
-          props.setToken(results.data.signup.token)
+          let token = results.data.signup.token;
+          loginStatus.error = null;
+          localStorage.setItem('token', token);
+          props.setToken(token);
       })
   }
 
@@ -43,9 +43,11 @@ const Onboarding = (props) => {
     let {email, password} = fields;
     login({variables: {email,password}})
       .then(results => {
-        signupStatus.error = null
-        localStorage.setItem('token', results.data.login.token)
-        props.setToken(results.data.login.token)
+        let token = results.data.login.token;
+        signupStatus.error = null;
+        localStorage.setItem('token', token);
+        props.setToken(token);
+
       })
   }
 
