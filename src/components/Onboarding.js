@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 
+import styles from './Onboarding.module.scss';
+
 const SIGNUP = gql`
   mutation Signup($name: String!, $email: String!, $password: String!) {
     signup(name: $name, email: $email, password: $password) {
@@ -56,8 +58,8 @@ const Onboarding = (props) => {
       {signupStatus.error && <p>{signupStatus.error.message}</p>}
       {loginStatus.error && <p>{loginStatus.error.message}</p>}
       <form>
-        <input name="name" value={fields.name} placeholder="Name"  onChange={e => handleChange(e)} />
-        <input name="email" value={fields.email} placeholder="Email"  onChange={e => handleChange(e)}/>
+        <input className={styles.username} name="name" value={fields.name} placeholder="Name"  onChange={e => handleChange(e)} />
+        <input className="username" name="email" value={fields.email} placeholder="Email"  onChange={e => handleChange(e)}/>
         <input type="password" name="password" value={fields.password} placeholder="Password"  onChange={e => handleChange(e)}/>
         <button onClick={e => handleLogin(e)}>Log in</button>
         <button onClick={e => handleSignup(e)}> Sign up</button>
