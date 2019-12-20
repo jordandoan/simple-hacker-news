@@ -5,6 +5,7 @@ import PostInfo from './PostInfo';
 import { GET_LINKS } from './Queries';
 const Feed = ({ preview }) => {
   const { client, loading, error, data } = useQuery(GET_LINKS);
+  if (loading) return <p>Loading...</p>;
   return (
     <div>
       {data &&

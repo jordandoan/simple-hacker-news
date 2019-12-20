@@ -6,7 +6,7 @@ const NavBar = () => {
 
   return (
     <div>
-      <h1>Simple Hacker News</h1>
+      <NavLink to="/"><h1>Simple Hacker News</h1></NavLink>
       <div>
         <NavLink to="/signup">Sign Up</NavLink>
         <NavLink to="/signin">Sign In</NavLink>

@@ -21,6 +21,7 @@ const LOGIN = gql`
 `
 
 const Onboarding = (props) => {
+  const signinPage = (props.match.path.substring(1) === "signin" ? true : false);
   const [fields, setFields] = useState({name: "", email: "", password: ""});
   const [signup, signupStatus] = useMutation(SIGNUP);
   const [login, loginStatus] = useMutation(LOGIN);
@@ -36,7 +37,6 @@ const Onboarding = (props) => {
           let token = results.data.signup.token;
           loginStatus.error = null;
           localStorage.setItem('token', token);
-          props.setToken(token);
       })
   }
 
@@ -48,8 +48,6 @@ const Onboarding = (props) => {
         let token = results.data.login.token;
         signupStatus.error = null;
         localStorage.setItem('token', token);
-        props.setToken(token);
-
       })
   }
 
@@ -58,11 +56,12 @@ const Onboarding = (props) => {
       {signupStatus.error && <p>{signupStatus.error.message}</p>}
       {loginStatus.error && <p>{loginStatus.error.message}</p>}
       <form>
-        <input className={styles.username} name="name" value={fields.name} placeholder="Name"  onChange={e => handleChange(e)} />
+
+        {!signinPage && <input className={styles.username} name="name" value={fields.name} placeholder="Name"  onChange={e => handleChange(e)} />}
         <input className="username" name="email" value={fields.email} placeholder="Email"  onChange={e => handleChange(e)}/>
         <input type="password" name="password" value={fields.password} placeholder="Password"  onChange={e => handleChange(e)}/>
-        <button onClick={e => handleLogin(e)}>Log in</button>
-        <button onClick={e => handleSignup(e)}> Sign up</button>
+        {signinPage && <button onClick={e => handleLogin(e)}>Log in</button>}
+        {!signinPage && <button onClick={e => handleSignup(e)}> Sign up</button>}
       </form>
     </div>
   );

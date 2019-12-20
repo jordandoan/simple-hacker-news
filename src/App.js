@@ -34,6 +34,7 @@ function App() {
       <NavBar />
       <Route exact path="/" component={LandingPage} />
       <Route exact path="/preview" render={() => <Feed preview={true}/>} />
+      <Route path={["/signup", "/signin"]} component={Onboarding} />
       {/* {!token && <Onboarding setToken={setToken}/>} 
       {token && <button onClick={logout}>Logout</button>}
       {
