@@ -35,8 +35,8 @@ const Add = () => {
     e.preventDefault();
     addLink({variables: fields})
     setFields({url: "", description: ""})
-
   }
+
   return (
     <div>
       {status.error && <p>{status.error.message}</p>}
