@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks';
 import {  GET_USER } from './Queries';
 import LinkCard from './LinkCard';
 import Modal from './Modal';
+import Add from './Add';
 
 const UserFeed = (props) => {
   let { data } = useQuery(GET_USER);
@@ -16,7 +17,7 @@ const UserFeed = (props) => {
         {props.feed.links.map((link, index) => <LinkCard index={index} link={link} userId={data.me.id}/>)}
       </div>
       <Modal open={open} setOpen={setOpen} text="Submit link">
-        jaskldjas
+        <Add setOpen={setOpen} />
       </Modal>
     </div>
   )

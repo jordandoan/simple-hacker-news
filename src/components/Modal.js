@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './Modal.module.scss';
 
-const Modal = ({open, setOpen, children}) => {
+const Modal = ({open, setOpen, text, children}) => {
   const node = useRef();
 
   useEffect(() => {
@@ -17,14 +17,16 @@ const Modal = ({open, setOpen, children}) => {
   }, [open]);
   
   return (
-    <div className='coach-card-modal-text'>
-      <button className='coach-card-modal-text' onClick={() => setOpen(!open)}>
-        <p className='coach-card-modal-text coachcard-seemore'>See more </p>
+    <div>
+      <button onClick={() => setOpen(!open)}>
+        <p>{text}</p>
       </button>
     {open && (
       <div ref={node}>
         <div id="overlay" className={styles.overlay} onClick={() => setOpen(!open)}></div>
-        {children}
+        <div className={styles.modal}>
+          {children}
+        </div>
       </div>
     ) }
   </div>

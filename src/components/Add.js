@@ -13,7 +13,8 @@ const POST = gql`
   ${LINK_FRAGMENT}
 `
 
-const Add = () => {
+const Add = (props) => {
+
   const [fields, setFields] = useState({url: "", description: ""});
   const [addLink, status] = useMutation(POST,
     {
@@ -25,7 +26,7 @@ const Add = () => {
         });
       }
     }
-);
+  );
 
   const handleChange = (e) => {
     setFields({...fields, [e.target.name]: e.target.value})
@@ -34,7 +35,10 @@ const Add = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addLink({variables: fields})
-    setFields({url: "", description: ""})
+      .then(res => {
+        props.setOpen(false);
+      })
+      .catch(err => console.log(err))
   }
 
   return (

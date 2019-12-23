@@ -11,3 +11,18 @@
 	z-index: 999;
 	// cursor: not-allowed;
 }
+
+.modal {
+  position: absolute;
+  width: 25%;
+  height: 70%;
+	left: 50%;
+	top: 6.4rem;
+	transform: translate(-50%);
+	background: white;
+	border-radius: 10px;
+	z-index: 1000;
+	@media screen and (max-width: 550px) {
+		min-width: 550px;
+	}
+}
