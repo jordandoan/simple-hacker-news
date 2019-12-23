@@ -11,28 +11,14 @@ import NavBar from './components/NavBar';
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'))
-  // const [getUser, {data: userData}] = useLazyQuery(GET_USER);
-  // const logout = () => {
-  //   setToken('');
-  //   localStorage.clear();
-  //   client.clearStore();
-  // }
 
   return (
     <div className="App">
       <NavBar token={token} setToken={setToken}/>
       <Route exact path="/" component={LandingPage} />
-      <Route exact path="/preview" render={() => <Feed preview={true}/>} />
-      <Route path={["/signup", "/signin"]} render={() => <Onboarding token={token} setToken={setToken} />} />
-      {/* {!token && <Onboarding setToken={setToken}/>} 
-      {token && <button onClick={logout}>Logout</button>}
-      {
-        token && userData && 
-        <div>
-          <Add/> 
-
-        </div>
-      } */}
+      <Route exact path="/preview" render={(props) => <Feed {...props} preview={true}/>} />
+      <Route exact path ="/feed" render={(props) => <Feed {...props} preview={false}/> } />
+      <Route path={["/signup", "/signin"]} render={(props) => <Onboarding {...props} token={token} setToken={setToken} />} />
     </div>
   );
 }

@@ -25,11 +25,10 @@ const Onboarding = (props) => {
   const [fields, setFields] = useState({name: "", email: "", password: ""});
   const [signup, signupStatus] = useMutation(SIGNUP);
   const [login, loginStatus] = useMutation(LOGIN);
-  const [token, setToken] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
-    if (token) props.history.push('/');
-  }, [token])
+    if (props.token) props.history.push('/feed');
+  }, [props.token])
   
   const handleChange = (e) => {
     setFields({...fields, [e.target.name]: e.target.value})
@@ -42,7 +41,7 @@ const Onboarding = (props) => {
           let token = results.data.signup.token;
           loginStatus.error = null;
           localStorage.setItem('token', token);
-          setToken(token);
+          props.setToken(token);
       })
       .catch(res => { console.log(res)})
   }
@@ -55,7 +54,7 @@ const Onboarding = (props) => {
         let token = results.data.login.token;
         signupStatus.error = null;
         localStorage.setItem('token', token);
-        setToken(token);
+        props.setToken(token);
       })
       .catch(res => { console.log(res)})
   }
