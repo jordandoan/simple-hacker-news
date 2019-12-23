@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
+
+import styles from './Onboarding.module.scss';
 
 const SIGNUP = gql`
   mutation Signup($name: String!, $email: String!, $password: String!) {
@@ -19,10 +21,15 @@ const LOGIN = gql`
 `
 
 const Onboarding = (props) => {
+  const signinPage = props.match.path.substring(1) === "signin";
   const [fields, setFields] = useState({name: "", email: "", password: ""});
   const [signup, signupStatus] = useMutation(SIGNUP);
   const [login, loginStatus] = useMutation(LOGIN);
 
+  useEffect(() => {
+    if (props.token) props.history.push('/feed');
+  }, [props.token])
+  
   const handleChange = (e) => {
     setFields({...fields, [e.target.name]: e.target.value})
   }
@@ -36,6 +43,7 @@ const Onboarding = (props) => {
           localStorage.setItem('token', token);
           props.setToken(token);
       })
+      .catch(res => { console.log(res)})
   }
 
   const handleLogin = (e) => {
@@ -47,20 +55,27 @@ const Onboarding = (props) => {
         signupStatus.error = null;
         localStorage.setItem('token', token);
         props.setToken(token);
-
       })
+      .catch(res => { console.log(res)})
   }
 
   return (
-    <div>
+    <div className={styles.container}>
+      <h2>{(signinPage ? "Sign In" : "Sign Up")}</h2>
       {signupStatus.error && <p>{signupStatus.error.message}</p>}
       {loginStatus.error && <p>{loginStatus.error.message}</p>}
-      <form>
-        <input name="name" value={fields.name} placeholder="Name"  onChange={e => handleChange(e)} />
-        <input name="email" value={fields.email} placeholder="Email"  onChange={e => handleChange(e)}/>
-        <input type="password" name="password" value={fields.password} placeholder="Password"  onChange={e => handleChange(e)}/>
-        <button onClick={e => handleLogin(e)}>Log in</button>
-        <button onClick={e => handleSignup(e)}> Sign up</button>
+      <form className={styles.form}>
+        {!signinPage && <div><input name="name" value={fields.name} placeholder="Name"  onChange={e => handleChange(e)} /></div>}
+        <div>
+          <input className="username" name="email" value={fields.email} placeholder="Email"  onChange={e => handleChange(e)}/>
+        </div>
+        <div>
+          <input type="password" name="password" value={fields.password} placeholder="Password"  onChange={e => handleChange(e)}/>
+        </div>
+        <div>
+        {signinPage && <button className={styles.button} onClick={e => handleLogin(e)}>Log in</button>}
+        {!signinPage && <button className={styles.button} onClick={e => handleSignup(e)}> Sign up</button>}
+        </div>
       </form>
     </div>
   );

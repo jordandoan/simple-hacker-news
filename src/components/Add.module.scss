@@ -1,0 +1,13 @@
+.container {
+  width: 90%;
+  margin:auto;
+  align-items: center;
+  margin-top: 5%;
+
+  .input {
+    border: 1px solid red;
+    input {
+      width: 80%
+    }
+  }
+}

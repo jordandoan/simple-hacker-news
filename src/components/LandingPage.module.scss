@@ -1,0 +1,28 @@
+.container {
+  padding-top: 5%;
+}
+
+.jumbotron {
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 50%;
+  margin: auto;
+  padding: 2% 1%;
+
+  h2 {
+    font-weight: 400;
+  }
+
+  .button {
+    background-color: #2f54eb;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    padding: 0.5rem 1.2rem;
+  }
+
+  .none {
+    text-decoration: none;
+    color: white;
+  }
+}

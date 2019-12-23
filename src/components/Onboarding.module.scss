@@ -1,0 +1,28 @@
+.container {
+  width: 60%;
+  margin: auto;
+  padding: 2%;
+  height: 20rem;
+}
+
+.form {
+  padding: 2.5% 0;
+  height: 30%;
+  > div {
+    margin: 0.5% auto;
+    > input {
+      width: 20%;
+      padding: 0.4rem 0.6rem;
+      border-radius: 15px;
+      border: 1px solid lightgray;
+    }
+  }
+  .button {
+    background-color: #2f54eb;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    padding: 0.5rem 1.2rem;
+
+  }
+}

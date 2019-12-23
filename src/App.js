@@ -1,44 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery, useLazyQuery } from '@apollo/react-hooks';
-
+import React, { useState } from 'react';
+import { Route } from 'react-router-dom';
 import Onboarding from './components/Onboarding';
 import Add from './components/Add';
-import LinkCard from './components/LinkCard';
-import { GET_LINKS, GET_USER } from './components/Queries';
+import LandingPage from './components/LandingPage';
+import Feed from './components/Feed';
 
-import './App.css';
+import './App.scss';
+import NavBar from './components/NavBar';
 
 function App() {
-  const { client, loading, error, data } = useQuery(GET_LINKS, { pollInterval: 500 });
   const [token, setToken] = useState(localStorage.getItem('token'))
-  const [getUser, {data: userData}] = useLazyQuery(GET_USER);
-  useEffect(() => {
-    if (token) {
-      getUser();
-    }
-  }, [token])
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-
-  const logout = () => {
-    setToken('');
-    localStorage.clear();
-    client.resetStore();
-  }
 
   return (
     <div className="App">
-      {!token && <Onboarding setToken={setToken}/>} 
-      {token && <button onClick={logout}>Logout</button>}
-      {
-        token && userData && 
-        <div>
-          <Add/> 
-          <div className="links">
-            {data.feed.links.map((link, index) => <LinkCard user={userData.me} link={link} index={index}/>)}
-          </div>
-        </div>
-      }
+      <NavBar token={token} setToken={setToken}/>
+      <Route exact path="/" component={LandingPage} />
+      <Route exact path="/preview" render={(props) => <Feed {...props} preview={true}/>} />
+      <Route exact path ="/feed" render={(props) => <Feed {...props} preview={false}/> } />
+      <Route path={["/signup", "/signin"]} render={(props) => <Onboarding {...props} token={token} setToken={setToken} />} />
     </div>
   );
 }
