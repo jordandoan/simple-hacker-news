@@ -6,14 +6,14 @@ import { NavLink } from 'react-router-dom';
 const NavBar = ({ token, setToken }) => {
   const client = useApolloClient();
   const history = useHistory();
-  
+
   const logout = () => {
     setToken('');
     localStorage.clear();
     client.clearStore();
     history.push('/');
   }
-  console.log(token);
+
   return (
     <div>
       <NavLink to="/"><h1>Simple Hacker News</h1></NavLink>

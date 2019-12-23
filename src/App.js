@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import Onboarding from './components/Onboarding';
 import Add from './components/Add';
-import LinkCard from './components/LinkCard';
 import LandingPage from './components/LandingPage';
 import Feed from './components/Feed';
 
