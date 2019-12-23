@@ -7,7 +7,7 @@ import Add from './Add';
 
 const UserFeed = (props) => {
   let { data } = useQuery(GET_USER);
-  let [open, setOpen] = useState(true);
+  let [open, setOpen] = useState(false);
   if (!data) return <p>Loading user...</p>
 
   return (
