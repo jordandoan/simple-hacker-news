@@ -3,6 +3,8 @@ import { useApolloClient } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 
 import { NavLink } from 'react-router-dom';
+import styles from './NavBar.module.scss';
+
 const NavBar = ({ token, setToken }) => {
   const client = useApolloClient();
   const history = useHistory();
@@ -15,13 +17,13 @@ const NavBar = ({ token, setToken }) => {
   }
 
   return (
-    <div>
-      <NavLink to="/"><h1>Simple Hacker News</h1></NavLink>
-      <div>
+    <div className={styles.navbar}>
+      <NavLink className={styles.none} to="/"><h1>Simple Hacker News</h1></NavLink>
+      <div className={styles.buttons}>
         {!token &&
           <>
-            <NavLink to="/signup">Sign Up</NavLink>
-            <NavLink to="/signin">Sign In</NavLink>
+            <NavLink className={styles.none} activeClassName={styles.active} to="/signup">Sign Up</NavLink>
+            <NavLink className={styles.none} activeClassName={styles.active} to="/signin">Sign In</NavLink>
           </>
         }
         { token && 

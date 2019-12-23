@@ -1,0 +1,23 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6% 0 2%;
+  border-bottom: 2px solid black;
+  background-color: beige;
+
+  .none {
+    text-decoration: none;
+    color: black;
+  }
+
+  .active {
+    text-decoration: underline;
+  }
+  .buttons {
+    width: 10%;
+    > * {
+      margin: 0 2%;
+    }
+  }
+}

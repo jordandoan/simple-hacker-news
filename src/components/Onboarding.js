@@ -61,10 +61,10 @@ const Onboarding = (props) => {
 
   return (
     <div className={styles.container}>
+      <h2>{(signinPage ? "Sign In" : "Sign Up")}</h2>
       {signupStatus.error && <p>{signupStatus.error.message}</p>}
       {loginStatus.error && <p>{loginStatus.error.message}</p>}
       <form className={styles.form}>
-
         {!signinPage && <div><input name="name" value={fields.name} placeholder="Name"  onChange={e => handleChange(e)} /></div>}
         <div>
           <input className="username" name="email" value={fields.email} placeholder="Email"  onChange={e => handleChange(e)}/>

@@ -4,6 +4,8 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { GET_LINKS, LINK_FRAGMENT } from './Queries';
 
+import styles from './Add.module.scss';
+
 const POST = gql`
   mutation Post($url: String!, $description: String!) {
     post(url: $url, description: $description) {
@@ -42,11 +44,15 @@ const Add = (props) => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       {status.error && <p>{status.error.message}</p>}
-      <form onSubmit={e => handleSubmit(e)}>
-        <input name="url" value={fields.url} placeholder="URL"  onChange={e => handleChange(e)} />
-        <input name="description" value={fields.description} placeholder="Description"  onChange={e => handleChange(e)}/>
+      <form className={styles.form} onSubmit={e => handleSubmit(e)}>
+        <div className={styles.input}>
+          <input name="url" value={fields.url} placeholder="URL"  onChange={e => handleChange(e)} />
+        </div>
+        <div className={styles.input}>
+          <input name="description" value={fields.description} placeholder="Description"  onChange={e => handleChange(e)}/>
+        </div>
         <button>Add link</button>
       </form>
     </div>
