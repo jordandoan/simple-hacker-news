@@ -1,4 +1,8 @@
-.body {
-  border: 1px solid black;
-  text-align: left;
+.container {
+text-align: left;
+width: 98%;
+  .body {
+    border: 1px solid black;
+    text-align: left;
+  }
 }

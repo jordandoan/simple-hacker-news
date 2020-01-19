@@ -62,8 +62,9 @@ const LinkCard = ({ link, index, userId }) => {
   return (
     <div className="link-container">
       <PostInfo link={link} loggedIn={true}>
-        <p className={`vote-button ${(voted ? "liked" : "")}`} onClick={loading ? null : handleVote}>{(voted) ? 'Liked' : 'Like' } {count}</p>
-        {loading ? <Loading/> : ""}
+        <div className="vert-mid">
+          <p className={`vote-button ${(voted ? "liked" : "")}`} onClick={loading ? null : handleVote}>{count}</p>
+        </div>
       </PostInfo>
     </div>
   );

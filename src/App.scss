@@ -3,20 +3,25 @@
 }
 
 .link-container {
-  border: 1px solid black;
+
   width: 80%;
-  padding: 2%;
+  padding: 1% 2%;
   margin: auto;
+  display:flex;
+  justify-content: space-between;
 }
 
 .links {
   display: flex;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
+}
+.test {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
 }
 
-.links:nth-child(2n) {
-  flex-direction: row-reverse;
-}
 
 .liked {
   color:blue;
@@ -28,8 +33,10 @@
 
 .vote-button {
   background-color: lightgray;
-  width: 70%;
+
   margin: auto;
+  vertical-align: center;
   border: 1px solid black;
-  border-radius: 15px;
+  padding: 8px;
 }
+
