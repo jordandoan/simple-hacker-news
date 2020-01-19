@@ -1,11 +1,13 @@
 import React from 'react';
-
+import styles from './PostInfo.module.scss';
 const PostInfo = ({ link, loggedIn, children }) => {
   
   return (
   <>
-    <p>{link.url}</p>
-    <p>{link.description}</p>
+    <div className={styles.body}>
+      <p>{link.url}</p>
+      <p>{link.description}</p>
+    </div>
     <p>Posted by: {link.postedBy.name}</p>
     {(loggedIn ? <div className="test">
       {children}

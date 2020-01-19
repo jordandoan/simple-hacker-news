@@ -62,6 +62,7 @@ const Onboarding = (props) => {
   return (
     <div className={styles.container}>
       <h2>{(signinPage ? "Sign In" : "Sign Up")}</h2>
+      {(signupStatus.loading || loginStatus.loading) && <p>Getting authorization...</p>}
       {signupStatus.error && <p>{signupStatus.error.message}</p>}
       {loginStatus.error && <p>{loginStatus.error.message}</p>}
       <form className={styles.form}>
