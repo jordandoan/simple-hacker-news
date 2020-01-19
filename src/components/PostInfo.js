@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './PostInfo.module.scss';
-const PostInfo = ({ link, loggedIn, children }) => {
-  
+const PostInfo = ({ link, loggedIn, userId, children }) => {
   return (
   <>
     {(loggedIn ? <div className="test">
@@ -13,7 +12,10 @@ const PostInfo = ({ link, loggedIn, children }) => {
       <p>{link.url}</p>
       <p>{link.description}</p>
       </div>
-      <p>Posted by: {link.postedBy.name}</p>
+      <div className={styles.meta}>
+        <p>Posted by {link.postedBy.name}</p>
+        {(userId === link.postedBy.id ? <><p>Edit</p><p>Delete</p></> : "" )}
+      </div>
     </div>
 
 

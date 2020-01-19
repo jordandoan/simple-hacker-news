@@ -5,4 +5,10 @@ width: 98%;
     border: 1px solid black;
     text-align: left;
   }
+  .meta {
+    display: flex;
+    p {
+      margin: 0 0.2%; 
+    }
+  }
 }
