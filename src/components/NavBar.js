@@ -22,8 +22,8 @@ const NavBar = ({ token, setToken }) => {
       <div className={styles.buttons}>
         {!token &&
           <>
-            <NavLink className={styles.none} activeClassName={styles.active} to="/signup">Sign Up</NavLink>
-            <NavLink className={styles.none} activeClassName={styles.active} to="/signin">Sign In</NavLink>
+            <NavLink className={`${styles.none} ${styles.onboarding}`} activeClassName={styles.active} to="/signup">Sign Up</NavLink>
+            <NavLink className={`${styles.none} ${styles.onboarding}`}  activeClassName={styles.active} to="/signin">Sign In</NavLink>
           </>
         }
         { token && 

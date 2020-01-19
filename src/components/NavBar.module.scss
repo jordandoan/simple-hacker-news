@@ -10,14 +10,18 @@
     text-decoration: none;
     color: black;
   }
-
+  .onboarding {
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+  
   .active {
     text-decoration: underline;
   }
   .buttons {
-    width: 10%;
+    width: 15%;
     > * {
-      margin: 0 2%;
+      margin: 0 5%;
     }
   }
 }
