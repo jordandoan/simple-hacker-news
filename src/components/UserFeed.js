@@ -13,12 +13,12 @@ const UserFeed = (props) => {
   return (
     <div>
       { data && <h2>Greetings, {data.me.name}</h2>}
-      <div className="links">
-        {props.feed.links.map((link, index) => <LinkCard index={index} link={link} userId={data.me.id}/>)}
-      </div>
       <Modal open={open} setOpen={setOpen} text="Submit link">
         <Add setOpen={setOpen} />
       </Modal>
+      <div className="links">
+        {props.feed.links.map((link, index) => <LinkCard index={index} link={link} userId={data.me.id}/>)}
+      </div>
     </div>
   )
 }
