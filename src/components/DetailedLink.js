@@ -19,6 +19,9 @@ const DetailedLink = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     createComment({variables: {...fields, link: linkID }})
+      .then(res => {
+        setFields({...fields, text: ""})
+      })
   }
 
   if (loading) return <div>Finding post...</div>
@@ -31,7 +34,8 @@ const DetailedLink = (props) => {
       {link.comments.map(comment => 
         <div>
           {comment.text}
-        </div>)}
+        </div>
+        )}
     </div>
   )
 }
