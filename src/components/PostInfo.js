@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
 import styles from './PostInfo.module.scss';
-const PostInfo = ({ link, loggedIn, children }) => {
+import { useMutation } from '@apollo/react-hooks';
+import { DELETE } from './Mutations';
+import { GET_LINKS } from './Queries';
+import Modal from './Modal';
+
+const PostInfo = ({ link, loggedIn, userId, children }) => {
   const history = useHistory();
+  let [open, setOpen] = useState(false);
+  let [deletePost, {loading: deletePostLoading} ] = useMutation(DELETE, {
+    refetchQueries: GET_LINKS,
+    update(cache, {data}) {
+      const { feed } = cache.readQuery({ query: GET_LINKS });
+      const newLinks = feed.links.filter(feedLink => feedLink.id !== link.id)
+      cache.writeQuery({
+        query: GET_LINKS,
+        data: {feed: {...feed, links: newLinks}}
+      })
+    },
+    onCompleted(data) {
+      setOpen(false)
+    }
+  });
+
   return (
   <>
     {(loggedIn ? <div className="test">
@@ -11,11 +31,23 @@ const PostInfo = ({ link, loggedIn, children }) => {
       </div>
     : <p> {link.count} likes</p>)}
     <div className={styles.container}>
-      <div className={styles.body}  onClick={() => history.push(`/feed/${link.id}`)}>
+      <div className={styles.body} onClick={() => history.push(`/feed/${link.id}`)}>
         <p>{link.url}</p>
         <p>{link.description}</p>
       </div>
-      <p>Posted by: {link.postedBy.name} / {link.comment_count} comments</p>
+      <div className={styles.meta}>
+        <p>Posted by {link.postedBy.name} / {link.comment_count} comments</p>
+        {(userId === link.postedBy.id 
+          ? <>
+            <p>Edit</p>
+            <Modal open={open} setOpen={setOpen} text="Delete Post">
+              Are you sure you want to delete this post?
+              <p onClick={() => deletePost({variables: {id: link.id}})}>Confirm</p>
+              <p onClick={() => setOpen(false)}>Cancel</p>
+            </Modal>
+            </> 
+        : "" )}
+      </div>
     </div>
 
 

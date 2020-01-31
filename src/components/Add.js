@@ -48,13 +48,15 @@ const Add = (props) => {
       {status.error && <p>{status.error.message}</p>}
       <form className={styles.form} onSubmit={e => handleSubmit(e)}>
         <div className={styles.input}>
+          Share a link
           <input name="url" value={fields.url} placeholder="URL"  onChange={e => handleChange(e)} />
         </div>
         <div className={styles.input}>
+          What do you think?
           <input name="description" value={fields.description} placeholder="Description"  onChange={e => handleChange(e)}/>
         </div>
-        <button>Add link</button>
-      </form>
+        <button className={styles.button}>Add link</button>
+      </form> 
     </div>
   );
 }
