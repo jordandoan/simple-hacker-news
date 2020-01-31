@@ -9,6 +9,7 @@
   margin: auto;
   display:flex;
   justify-content: space-between;
+
 }
 
 .links {
@@ -38,5 +39,8 @@
   vertical-align: center;
   border: 1px solid black;
   padding: 8px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
