@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
 import CommentCard from './CommentCard';
+import styles from './CommentContainer.module.scss';
 
 import { GET_LINK } from './Queries';
 import { CREATE_COMMENT } from './Mutations';
@@ -38,7 +39,7 @@ const CommentContainer = ({ comments, linkID }) => {
       Comments
       <textarea placeholder="Add a comment..." name="text" value={fields.text} onChange={handleChange}/>
       <button onClick={handleSubmit}>Submit</button>
-      <div>
+      <div className={styles.comments}>
         {comments.map(comment => <CommentCard comment={comment}/>)}
       </div>
     </div>
