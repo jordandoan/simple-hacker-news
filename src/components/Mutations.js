@@ -35,7 +35,17 @@ export const DELETE_VOTE = gql`
 export const CREATE_COMMENT = gql`
   mutation CREATE_COMMENT ($link: ID!, $text: String!, $reply_to: ID) {
     createComment(link: $link, text: $text, reply_to: $reply_to) {
+      id
+      user {
+        name
+      }
       text
+      replies {
+        user {
+          name
+        }
+        text
+      }
     }
   }
 `
