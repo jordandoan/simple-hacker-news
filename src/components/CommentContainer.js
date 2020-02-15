@@ -40,7 +40,7 @@ const CommentContainer = ({ comments, linkID }) => {
       <textarea placeholder="Add a comment..." name="text" value={fields.text} onChange={handleChange}/>
       <button onClick={handleSubmit}>Submit</button>
       <div className={styles.comments}>
-        {comments.map(comment => <CommentCard comment={comment}/>)}
+        {comments.map(comment => <CommentCard comment={comment} linkID={linkID} />)}
       </div>
     </div>
   )
