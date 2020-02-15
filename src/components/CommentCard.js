@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 
-import { GET_LINK } from './Queries';
 import { CREATE_COMMENT } from './Mutations';
 
 import styles from './CommentCard.module.scss';
