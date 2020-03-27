@@ -4,5 +4,15 @@ width: 98%;
   .body {
     border: 1px solid black;
     text-align: left;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.4;
+    }
+  }
+  .meta {
+    display: flex;
+    p {
+      margin: 0 0.2%; 
+    }
   }
 }

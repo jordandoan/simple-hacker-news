@@ -15,6 +15,7 @@ fragment linkInfo on Link {
       id
     }
   }
+  comment_count
 }
 `
 export const GET_LINKS = gql`
@@ -28,6 +29,27 @@ query GetLinks {
 ${LINK_FRAGMENT}
 `
 
+export const GET_LINK = gql`
+query GetLink ($id: ID!) {
+  link(id: $id) {
+    ...linkInfo
+    comments {
+      id
+      user {
+        name
+      }
+      text
+      replies {
+        user {
+          name
+        }
+        text
+      }
+    }
+  }
+}
+${LINK_FRAGMENT}
+`
 export const GET_USER = gql`
 query User {
   me {

@@ -8,7 +8,7 @@
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-link-context": "^1.0.19",
     "graphql": "^14.5.8",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
