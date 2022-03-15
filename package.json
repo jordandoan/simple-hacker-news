@@ -8,14 +8,14 @@
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-link-context": "^1.0.19",
     "graphql": "^14.5.8",
-    "node-sass": "^4.13.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.3.0"
+    "react-scripts": "^3.3.0",
+    "sass": "^1.49.9"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
